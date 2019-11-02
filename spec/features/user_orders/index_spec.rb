@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'As a registered user' do
   describe 'When I visit my profile orders page' do
-    it 'displays every order I have made and their info' do
+    xit 'displays every order I have made and their info' do
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
 

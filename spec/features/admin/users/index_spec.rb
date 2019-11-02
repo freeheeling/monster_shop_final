@@ -13,7 +13,7 @@ RSpec.describe 'As an admin user' do
 
       visit admin_users_path
     end
-    it 'it shows all users and their info' do
+    xit 'it shows all users and their info' do
 
       within "#user-#{@user_1.id}" do
         expect(page).to have_link(@user_1.name)
@@ -40,7 +40,7 @@ RSpec.describe 'As an admin user' do
       end
     end
 
-    it 'can disable a user account' do
+    xit 'can disable a user account' do
       within "#user-#{@user_1.id}" do
         click_link 'Disable'
       end
@@ -58,7 +58,7 @@ RSpec.describe 'As an admin user' do
       end
     end
 
-    it 'can enable a user account' do
+    xit 'can enable a user account' do
       within "#user-#{@dog_employee.id}" do
         click_link 'Enable'
       end

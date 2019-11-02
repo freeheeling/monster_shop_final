@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'As an admin' do
-  it 'has a link to the admin dashboard' do
+  xit 'has a link to the admin dashboard' do
     admin = User.create(
       name: 'Bob',
       address: '123 Main',
@@ -36,7 +36,7 @@ RSpec.describe 'As an admin' do
     end
   end
 
-  it 'does not have access to cart or merchant' do
+  xit 'does not have access to cart or merchant' do
     admin = User.create(
       name: 'Bob',
       address: '123 Main',

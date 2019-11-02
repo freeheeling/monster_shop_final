@@ -49,7 +49,7 @@ describe Item, type: :model do
       expect(bottom_three).to eq([@review_3, @review_4, @review_5])
     end
 
-    it 'no orders' do
+    xit 'no orders' do
       expect(@chain.no_orders?).to eq(true)
       user = User.create(
         name: 'Bob',

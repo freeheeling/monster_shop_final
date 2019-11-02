@@ -32,11 +32,11 @@ describe ItemOrder, type: :model do
       @item_order_1 = @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
     end
 
-    it 'subtotal' do
+    xit 'subtotal' do
       expect(@item_order_1.subtotal).to eq(200)
     end
 
-    it '#reduce_inventory' do
+    xit '#reduce_inventory' do
       expect(@tire.inventory).to eq(12)
 
       @item_order_1.reduce_inventory
@@ -44,7 +44,7 @@ describe ItemOrder, type: :model do
       expect(@tire.inventory).to eq(10)
     end
 
-    it '#return_inventory' do
+    xit '#return_inventory' do
       expect(@tire.inventory).to eq(12)
 
       @item_order_1.return_inventory

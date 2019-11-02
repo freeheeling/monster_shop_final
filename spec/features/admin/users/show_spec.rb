@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'As an admin user' do
   describe 'when I visit a specific users profile page ' do
-    it 'it shows the same info the user would see on their profile page' do
+    xit 'it shows the same info the user would see on their profile page' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',

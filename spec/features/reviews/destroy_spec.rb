@@ -12,7 +12,7 @@ RSpec.describe 'review edit and update', type: :feature do
   end
 
   describe 'when a registered user visits the item show page' do
-    it 'it sees a link next to each review to delete it' do
+    xit 'it sees a link next to each review to delete it' do
       review_1 = @chain.reviews.create(title: 'Great place!', content: "They have great bike stuff and I'd recommend them to anyone.", rating: 5)
       review_2 = @chain.reviews.create(title: 'Cool shop!', content: "They have cool bike stuff and I'd recommend them to anyone.", rating: 4)
       review_3 = @chain.reviews.create(title: 'Meh place', content: "They have meh bike stuff and I probably won't come back", rating: 1)
@@ -30,7 +30,7 @@ RSpec.describe 'review edit and update', type: :feature do
       end
     end
 
-    it 'it can delete a review when it clicks on delete' do
+    xit 'it can delete a review when it clicks on delete' do
       review_1 = @chain.reviews.create(title: 'Great place!', content: "They have great bike stuff and I'd recommend them to anyone.", rating: 5)
       review_1_id = review_1.id
       visit "/items/#{@chain.id}"

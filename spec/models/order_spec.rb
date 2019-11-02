@@ -4,17 +4,17 @@ require 'rails_helper'
 
 describe Order, type: :model do
   describe 'validations' do
-    it { should validate_presence_of :name }
-    it { should validate_presence_of :address }
-    it { should validate_presence_of :city }
-    it { should validate_presence_of :state }
-    it { should validate_presence_of :zip }
+    xit { should validate_presence_of :name }
+    xit { should validate_presence_of :address }
+    xit { should validate_presence_of :city }
+    xit { should validate_presence_of :state }
+    xit { should validate_presence_of :zip }
   end
 
   describe 'relationships' do
     it { should have_many :item_orders }
     it { should have_many(:items).through(:item_orders) }
-    it { should belong_to :user }
+    xit { should belong_to :user }
   end
 
   describe 'instance methods' do
@@ -39,23 +39,23 @@ describe Order, type: :model do
       @item_order_2 = @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3, merchant_id: @brian.id, status: 1)
     end
 
-    it 'grand_total' do
+    xit 'grand_total' do
       expect(@order_1.grand_total).to eq(230)
     end
 
-    it 'total_quantity' do
+    xit 'total_quantity' do
       expect(@order_1.total_quantity).to eq(5)
     end
 
-    it 'find_order' do
+    xit 'find_order' do
       expect(@order_1.find_order(@meg.id).count).to eq(1)
     end
 
-    it 'all_items_fulfilled?' do
+    xit 'all_items_fulfilled?' do
       expect(@order_1.all_items_fulfilled?).to eq(true)
     end
 
-    it 'update_status' do
+    xit 'update_status' do
       expect(@order_1.status).to eq('Pending')
 
       @order_1.update_status(1)
@@ -63,7 +63,7 @@ describe Order, type: :model do
       expect(@order_1.status).to eq('Packaged')
     end
 
-    it 'packaged?' do
+    xit 'packaged?' do
       expect(@order_1.packaged?).to eq(false)
 
       order_2 = @user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033, status: 1)
@@ -73,7 +73,7 @@ describe Order, type: :model do
   end
 
   describe 'class_method' do
-    it 'sort_orders' do
+    xit 'sort_orders' do
       dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
       pull_toy = dog_shop.items.create(name: 'Pull Toy', description: 'Great pull toy!', price: 10, image: 'http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg', inventory: 32)
 

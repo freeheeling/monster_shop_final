@@ -12,7 +12,7 @@ RSpec.describe 'As an admin user' do
       visit merchants_path
     end
 
-    it 'I can see a link to create a new merchant' do
+    xit 'I can see a link to create a new merchant' do
       expect(page).to have_link('New Merchant')
 
       click_on 'New Merchant'
@@ -20,7 +20,7 @@ RSpec.describe 'As an admin user' do
       expect(current_path).to eq(new_merchant_path)
     end
 
-    it 'it shows all merchants with their name, city, and state' do
+    xit 'it shows all merchants with their name, city, and state' do
       within "#merchant-#{@bike_shop.id}" do
         expect(page).to have_link(@bike_shop.name)
         expect(page).to have_content("#{@bike_shop.city}, #{@bike_shop.state}")
@@ -32,7 +32,7 @@ RSpec.describe 'As an admin user' do
       end
     end
 
-    it 'displays disable/enable links for merchants that are enabled/disabled' do
+    xit 'displays disable/enable links for merchants that are enabled/disabled' do
       within "#merchant-#{@bike_shop.id}" do
         click_link 'Disable'
       end
@@ -58,7 +58,7 @@ RSpec.describe 'As an admin user' do
       end
     end
 
-    it 'displays a flash message when a merchant account is disabled' do
+    xit 'displays a flash message when a merchant account is disabled' do
       within "#merchant-#{@bike_shop.id}" do
         click_link 'Disable'
       end
@@ -66,7 +66,7 @@ RSpec.describe 'As an admin user' do
       expect(page).to have_content("#{@bike_shop.name} has been disabled!")
     end
 
-    it 'displays a flash message when a merchant account is enabled' do
+    xit 'displays a flash message when a merchant account is enabled' do
       within "#merchant-#{@dog_shop.id}" do
         click_link 'Enable'
       end
@@ -74,7 +74,7 @@ RSpec.describe 'As an admin user' do
       expect(page).to have_content("#{@dog_shop.name} has been enabled!")
     end
 
-    it 'disables all items for a merchant when the merchant has been disabled' do
+    xit 'disables all items for a merchant when the merchant has been disabled' do
       tire = @bike_shop.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
       pump = @bike_shop.items.create(name: 'Bike Pump', description: 'It works fast!', price: 25, image: 'https://images-na.ssl-images-amazon.com/images/I/71Wa47HMBmL._SY550_.jpg', active?: false, inventory: 15)
 
@@ -96,7 +96,7 @@ RSpec.describe 'As an admin user' do
       expect(dog_bone.active?).to eq(false)
     end
 
-    it 'enables all items for a merchant when the merchant has been enabled' do
+    xit 'enables all items for a merchant when the merchant has been enabled' do
       tire = @bike_shop.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
       pump = @bike_shop.items.create(name: 'Bike Pump', description: 'It works fast!', price: 25, image: 'https://images-na.ssl-images-amazon.com/images/I/71Wa47HMBmL._SY550_.jpg', active?: false, inventory: 15)
 

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'As a User' do
   describe 'as a Registered User' do
-    it "has profile and logout links but doesn't have login or register links" do
+    xit "has profile and logout links but doesn't have login or register links" do
       user = User.create(
         name: 'Bob',
         address: '123 Main',
@@ -39,7 +39,7 @@ RSpec.describe 'As a User' do
       expect(current_path).to eq(welcome_path)
     end
 
-    it 'restricts access to merchant and admin dashboards' do
+    xit 'restricts access to merchant and admin dashboards' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',

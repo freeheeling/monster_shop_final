@@ -21,8 +21,8 @@ describe 'As a logged in Merchant (employee/admin)' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
   end
-  
-  it 'on my dashboard, I see the name and address of the merchant I work for' do
+
+  xit 'on my dashboard, I see the name and address of the merchant I work for' do
     visit merchant_dashboard_path
 
     within '#merchant_details' do
@@ -31,7 +31,7 @@ describe 'As a logged in Merchant (employee/admin)' do
     end
   end
 
-  it 'on my dashboard, I see a link to view my own items' do
+  xit 'on my dashboard, I see a link to view my own items' do
     visit merchant_dashboard_path
 
     click_link 'View Items'
@@ -39,7 +39,7 @@ describe 'As a logged in Merchant (employee/admin)' do
     expect(current_path).to eq(merchant_user_items_path)
   end
 
-  it 'I see a list of pending orders with items I sell' do
+  xit 'I see a list of pending orders with items I sell' do
     user = User.create!(
       name: 'User_bob',
       address: '123 Main',

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Site Navigation' do
   describe 'As a Visitor' do
-    it 'I see a nav bar with links to all pages' do
+    xit 'I see a nav bar with links to all pages' do
       visit '/merchants'
 
       within 'nav' do
@@ -54,7 +54,7 @@ RSpec.describe 'Site Navigation' do
 
     it 'does not have a link to Users (visible only to admins)' do
       visit welcome_path
-      
+
       within 'nav' do
         expect(page).to_not have_content('Users')
       end

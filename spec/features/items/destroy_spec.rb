@@ -13,7 +13,7 @@ RSpec.describe 'item delete', type: :feature do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_admin)
     end
 
-      it 'it can delete an item' do
+      xit 'it can delete an item' do
         visit "/items/#{@chain.id}"
 
         expect(page).to have_link('Delete Item')
@@ -24,7 +24,7 @@ RSpec.describe 'item delete', type: :feature do
         expect("item-#{@chain.id}").to be_present
       end
 
-      it 'it can delete items and it deletes reviews' do
+      xit 'it can delete items and it deletes reviews' do
         review_1 = @chain.reviews.create(title: 'Great place!', content: "They have great bike stuff and I'd recommend them to anyone.", rating: 5)
 
         visit "/items/#{@chain.id}"
@@ -33,7 +33,7 @@ RSpec.describe 'item delete', type: :feature do
         expect(Review.where(id: review_1.id)).to be_empty
       end
 
-      it 'it cannot delete items with orders' do
+      xit 'it cannot delete items with orders' do
         user = User.create(name: 'Bob', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'user@email.com', password: 'secure')
         order_1 = user.orders.create!(name: 'Meg', address: '123 Stang St', city: 'Hershey', state: 'PA', zip: 80_218)
         order_1.item_orders.create!(item: @chain, price: @chain.price, quantity: 2)

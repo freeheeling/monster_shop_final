@@ -20,7 +20,7 @@ RSpec.describe 'Cart show' do
       @items_in_cart = [@paper, @tire, @pencil]
     end
 
-    it 'If I am a registered user, there is a link to checkout' do
+    xit 'If I am a registered user, there is a link to checkout' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',
@@ -42,7 +42,7 @@ RSpec.describe 'Cart show' do
       expect(current_path).to eq('/orders/new')
     end
 
-    it 'If I am not a registerd user, there is no checkout link, but there is a prompt to register or login' do
+    xit 'If I am not a registerd user, there is no checkout link, but there is a prompt to register or login' do
       visit cart_path
 
       expect(page).to have_content('Please Register or Log In to Checkout')

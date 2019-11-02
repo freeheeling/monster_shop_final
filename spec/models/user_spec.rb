@@ -4,25 +4,25 @@ require 'rails_helper'
 
 describe User, type: :model do
   describe 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:address) }
-    it { should validate_presence_of(:city) }
-    it { should validate_presence_of(:state) }
-    it { should validate_presence_of(:zip) }
-    it { should validate_numericality_of(:zip) }
-    it { should validate_presence_of(:email) }
-    it { should validate_uniqueness_of(:email) }
-    it { should validate_presence_of(:password) }
-    it { should_not allow_value(nil).for(:enabled?) }
+    xit { should validate_presence_of(:name) }
+    xit { should validate_presence_of(:address) }
+    xit { should validate_presence_of(:city) }
+    xit { should validate_presence_of(:state) }
+    xit { should validate_presence_of(:zip) }
+    xit { should validate_numericality_of(:zip) }
+    xit { should validate_presence_of(:email) }
+    xit { should validate_uniqueness_of(:email) }
+    xit { should validate_presence_of(:password) }
+    xit { should_not allow_value(nil).for(:enabled?) }
   end
 
   describe 'relationships' do
     it { should have_many :orders }
-    it { should belong_to(:merchant).optional }
+    xit { should belong_to(:merchant).optional }
   end
 
   describe 'roles' do
-    it 'default user' do
+    xit 'default user' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',
@@ -36,7 +36,7 @@ describe User, type: :model do
       expect(user.role).to eq('default')
     end
 
-    it 'merchant_employee' do
+    xit 'merchant_employee' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',
@@ -51,7 +51,7 @@ describe User, type: :model do
       expect(user.role).to eq('merchant_employee')
     end
 
-    it 'merchant_admin' do
+    xit 'merchant_admin' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',
@@ -66,7 +66,7 @@ describe User, type: :model do
       expect(user.role).to eq('merchant_admin')
     end
 
-    it 'site_admin' do
+    xit 'site_admin' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',

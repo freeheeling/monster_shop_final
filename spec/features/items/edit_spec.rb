@@ -19,7 +19,7 @@ RSpec.describe 'As a Merchant or Admin' do
         click_on 'Edit Item'
       end
 
-      it 'I can see the prepopulated fields of that item' do
+      xit 'I can see the prepopulated fields of that item' do
 
         expect(current_path).to eq("/items/#{@tire.id}/edit")
         expect(page).to have_link('Gatorskins')
@@ -30,7 +30,7 @@ RSpec.describe 'As a Merchant or Admin' do
         expect(find_field('Inventory').value).to eq '12'
       end
 
-      it 'I can change and update item with the form' do
+      xit 'I can change and update item with the form' do
         fill_in 'Name', with: 'GatorSkins'
         fill_in 'Price', with: 110
         fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
@@ -50,7 +50,7 @@ RSpec.describe 'As a Merchant or Admin' do
         expect(page).to_not have_content("They'll never pop!")
       end
 
-      it 'I get a flash message if entire form is not filled out' do
+      xit 'I get a flash message if entire form is not filled out' do
         fill_in 'Name', with: ''
         fill_in 'Price', with: 110
         fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."

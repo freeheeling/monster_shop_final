@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'As a registered user' do
   describe 'When I visit a profile order show page' do
-    it 'displays the order with all info' do
+    xit 'displays the order with all info' do
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
 
@@ -58,7 +58,7 @@ RSpec.describe 'As a registered user' do
       end
     end
 
-    it 'renders a 404 if the show page does not exist' do
+    xit 'renders a 404 if the show page does not exist' do
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
 
@@ -81,7 +81,7 @@ RSpec.describe 'As a registered user' do
       expect(page).to have_content('The page you were looking for doesn\'t exist.')
     end
 
-    it 'displays a link to cancel the order' do
+    xit 'displays a link to cancel the order' do
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
 
@@ -126,7 +126,7 @@ RSpec.describe 'As a registered user' do
       expect(item_order_2.status).to eq('Unfulfilled')
     end
 
-    it 'does not display a link if the order is shipped or cancelled' do
+    xit 'does not display a link if the order is shipped or cancelled' do
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
 
@@ -151,7 +151,7 @@ RSpec.describe 'As a registered user' do
       item_order_2 = order_1.item_orders.create!(item: pull_toy, price: pull_toy.price, quantity: 3, status: 1)
 
       visit profile_order_path(order_1)
-      
+
       expect(page).to_not have_link('Cancel Order')
     end
   end

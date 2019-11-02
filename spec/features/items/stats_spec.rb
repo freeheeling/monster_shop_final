@@ -34,7 +34,7 @@ describe 'Items Index Page' do
       visit items_path
     end
 
-    it 'I see the most and least popular items and the quantity sold' do
+    xit 'I see the most and least popular items and the quantity sold' do
       within '#most-popular-items' do
         expect(page).to have_content('Most Popular Items:')
         expect(page).to have_content("#{@tire.name}: 12 purchased\n#{@lock.name}: 10 purchased\n#{@helmet.name}: 8 purchased\n#{@chain.name}: 6 purchased\n#{@pump.name}: 3 purchased")
