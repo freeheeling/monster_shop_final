@@ -4,17 +4,14 @@ require 'rails_helper'
 
 describe Order, type: :model do
   describe 'validations' do
-    xit { should validate_presence_of :name }
-    xit { should validate_presence_of :address }
-    xit { should validate_presence_of :city }
-    xit { should validate_presence_of :state }
-    xit { should validate_presence_of :zip }
+    it { should validate_presence_of :name }
   end
 
   describe 'relationships' do
     it { should have_many :item_orders }
     it { should have_many(:items).through(:item_orders) }
-    xit { should belong_to :user }
+    it { should belong_to :user }
+    it { should belong_to :address }
   end
 
   describe 'instance methods' do

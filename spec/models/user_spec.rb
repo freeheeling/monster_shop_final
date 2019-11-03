@@ -4,21 +4,17 @@ require 'rails_helper'
 
 describe User, type: :model do
   describe 'validations' do
-    xit { should validate_presence_of(:name) }
-    xit { should validate_presence_of(:address) }
-    xit { should validate_presence_of(:city) }
-    xit { should validate_presence_of(:state) }
-    xit { should validate_presence_of(:zip) }
-    xit { should validate_numericality_of(:zip) }
-    xit { should validate_presence_of(:email) }
-    xit { should validate_uniqueness_of(:email) }
-    xit { should validate_presence_of(:password) }
-    xit { should_not allow_value(nil).for(:enabled?) }
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:email) }
+    it { should validate_uniqueness_of(:email) }
+    it { should validate_presence_of(:password) }
+    it { should_not allow_value(nil).for(:enabled?) }
   end
 
   describe 'relationships' do
     it { should have_many :orders }
-    xit { should belong_to(:merchant).optional }
+    it { should have_many :addresses }
+    it { should belong_to(:merchant).optional }
   end
 
   describe 'roles' do
