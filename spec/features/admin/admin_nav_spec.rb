@@ -3,17 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe 'As an admin' do
-  xit 'has a link to the admin dashboard' do
-    admin = User.create(
-      name: 'Bob',
-      address: '123 Main',
-      city: 'Denver',
-      state: 'CO',
-      zip: 80_233,
-      email: 'bob@email.com',
-      password: 'secure',
-      role: 3
-    )
+  it 'has a link to the admin dashboard' do
+    admin = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 3)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
@@ -37,15 +28,7 @@ RSpec.describe 'As an admin' do
   end
 
   xit 'does not have access to cart or merchant' do
-    admin = User.create(
-      name: 'Bob',
-      address: '123 Main',
-      city: 'Denver',
-      state: 'CO',
-      zip: 80_233,
-      email: 'bob@email.com',
-      password: 'secure', role: 3
-    )
+    admin = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 3)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 

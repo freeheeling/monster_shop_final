@@ -6,18 +6,9 @@ RSpec.describe 'As a merchant' do
   describe 'merchant admin' do
     describe 'when I click edit item from the merchant items index page' do
       before :each do
-        @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
-        @tire = @meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100.25, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
-        merchant_admin = @meg.users.create!(
-          name: 'Bob',
-          address: '123 Main',
-          city: 'Denver',
-          state: 'CO',
-          zip: 80_233,
-          email: 'bob@email.com',
-          password: 'secure',
-          role: 2
-        )
+        meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
+        @tire = meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100.25, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
+        merchant_admin = meg.users.create!(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 2)
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_admin)
 
@@ -28,7 +19,7 @@ RSpec.describe 'As a merchant' do
         end
       end
 
-      xit 'has a prepopulated form with the previous values' do
+      it 'has a prepopulated form with the previous values' do
         expect(current_path).to eq(merchant_items_edit_path(@tire.id))
 
         expect(find_field('Name').value).to eq('Gatorskins')
@@ -38,7 +29,7 @@ RSpec.describe 'As a merchant' do
         expect(find_field('Inventory').value).to eq('12')
       end
 
-      xit 'can edit an item from the edit item form' do
+      it 'can edit an item from the edit item form' do
         fill_in :name, with: 'Chamois Buttr'
         fill_in :price, with: 18
         fill_in :description, with: "No more chaffin'!"
@@ -61,7 +52,7 @@ RSpec.describe 'As a merchant' do
         expect(@tire.active?).to eq(true)
       end
 
-      xit 'must have both price and inventory greater than zero for item creation' do
+      it 'must have both price and inventory greater than zero for item creation' do
         fill_in :name, with: 'Chamois Buttr'
         fill_in :price, with: -1
         fill_in :description, with: "No more chaffin'!"
@@ -74,7 +65,7 @@ RSpec.describe 'As a merchant' do
         expect(page).to have_content('Inventory must be greater than 0')
       end
 
-      xit 'forms cannot be left blank' do
+      it 'forms cannot be left blank' do
         fill_in :name, with: nil
         fill_in :price, with: 5
         fill_in :description, with: nil

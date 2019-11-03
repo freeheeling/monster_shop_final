@@ -10,16 +10,8 @@ RSpec.describe 'As a User' do
       expect(current_path).to eq(login_path)
     end
 
-    xit 'cannot login with invalid password' do
-      user = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure'
-      )
+    it 'cannot login with invalid password' do
+      user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure')
 
       fill_in :email, with: user.email
       fill_in :password, with: 'not secure'
@@ -31,16 +23,8 @@ RSpec.describe 'As a User' do
       expect(find_field(:password).value).to eq(nil)
     end
 
-    xit 'cannot login with invalid email' do
-      user = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure'
-      )
+    it 'cannot login with invalid email' do
+      user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure')
 
       fill_in :email, with: 'not_bob@email.com'
       fill_in :password, with: user.password
@@ -52,17 +36,8 @@ RSpec.describe 'As a User' do
       expect(find_field(:password).value).to eq(nil)
     end
 
-    xit 'cannot login if the user is disabled' do
-      user = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure',
-        enabled?: false
-      )
+    it 'cannot login if the user is disabled' do
+      user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure', enabled?: false)
 
       fill_in :email, with: user.email
       fill_in :password, with: user.password
@@ -76,15 +51,7 @@ RSpec.describe 'As a User' do
 
     describe 'as a regular user' do
       xit 'when I enter my valid credentials, I am redirected to my profile page' do
-        user = User.create(
-          name: 'Bob',
-          address: '123 Main',
-          city: 'Denver',
-          state: 'CO',
-          zip: 80_233,
-          email: 'bob@email.com',
-          password: 'secure'
-        )
+        user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure')
 
         fill_in :email, with: user.email
         fill_in :password, with: user.password
@@ -122,18 +89,9 @@ RSpec.describe 'As a User' do
     end
 
     describe 'as a merchant employee or merchant admin' do
-      xit 'when I enter my valid credentials, I am redirected to my merchant dashboard' do
+      it 'when I enter my valid credentials, I am redirected to my merchant dashboard' do
         meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
-        merchant_employee = meg.users.create!(
-          name: 'Bob',
-          address: '123 Main',
-          city: 'Denver',
-          state: 'CO',
-          zip: 80_233,
-          email: 'bob@email.com',
-          password: 'secure',
-          role: 1
-        )
+        merchant_employee = meg.users.create!(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 1)
 
         fill_in :email, with: merchant_employee.email
         fill_in :password, with: merchant_employee.password
@@ -147,18 +105,9 @@ RSpec.describe 'As a User' do
         expect(page).to_not have_link('Log In')
       end
 
-      xit 'redirects me to the merchant dashboard if Im already logged in' do
+      it 'redirects me to the merchant dashboard if Im already logged in' do
         meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
-        merchant_admin = meg.users.create!(
-          name: 'Bob',
-          address: '123 Main',
-          city: 'Denver',
-          state: 'CO',
-          zip: 80_233,
-          email: 'bob@email.com',
-          password: 'secure',
-          role: 2
-        )
+        merchant_admin = meg.users.create!(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 2)
 
         fill_in :email, with: merchant_admin.email
         fill_in :password, with: merchant_admin.password
@@ -173,17 +122,8 @@ RSpec.describe 'As a User' do
     end
 
     describe 'as a site admin' do
-      xit 'when I enter my valid credentials, I am redirected to my site admin dashboard' do
-        site_admin = User.create(
-          name: 'Bob',
-          address: '123 Main',
-          city: 'Denver',
-          state: 'CO',
-          zip: 80_233,
-          email: 'bob@email.com',
-          password: 'secure',
-          role: 3
-        )
+      it 'when I enter my valid credentials, I am redirected to my site admin dashboard' do
+        site_admin = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 3)
 
         fill_in :email, with: site_admin.email
         fill_in :password, with: site_admin.password
@@ -198,17 +138,8 @@ RSpec.describe 'As a User' do
       end
     end
 
-    xit 'redirects me to the site admin dashboard if Im already logged in' do
-      site_admin = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure',
-        role: 3
-      )
+    it 'redirects me to the site admin dashboard if Im already logged in' do
+      site_admin = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 3)
 
       fill_in :email, with: site_admin.email
       fill_in :password, with: site_admin.password
