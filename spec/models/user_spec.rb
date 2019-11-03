@@ -18,61 +18,26 @@ describe User, type: :model do
   end
 
   describe 'roles' do
-    xit 'default user' do
-      user = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure'
-      )
+    it 'default user' do
+      user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure')
 
       expect(user.role).to eq('default')
     end
 
-    xit 'merchant_employee' do
-      user = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure',
-        role: 1
-      )
+    it 'merchant_employee' do
+      user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 1)
 
       expect(user.role).to eq('merchant_employee')
     end
 
-    xit 'merchant_admin' do
-      user = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure',
-        role: 2
-      )
+    it 'merchant_admin' do
+      user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 2)
 
       expect(user.role).to eq('merchant_admin')
     end
 
-    xit 'site_admin' do
-      user = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure',
-        role: 3
-      )
+    it 'site_admin' do
+      user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 3)
 
       expect(user.role).to eq('site_admin')
     end
