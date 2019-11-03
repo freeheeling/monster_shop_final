@@ -27,7 +27,7 @@ RSpec.describe 'As an admin user' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@site_admin)
     end
 
-    xit 'it shows all orders and the user for that order' do
+    it 'it shows all orders and the user for that order' do
       visit admin_path
 
       within "#order-#{@order_1.id}" do
@@ -59,7 +59,7 @@ RSpec.describe 'As an admin user' do
       end
     end
 
-    xit 'I can update the order status from \'Packaged\' to \'Shipped\'' do
+    it 'I can update the order status from \'Packaged\' to \'Shipped\'' do
       visit admin_path
 
       within "#order-#{@order_1.id}" do
@@ -87,7 +87,7 @@ RSpec.describe 'As an admin user' do
       end
     end
 
-    xit 'the order ID is a link to an admin-only view of that order' do
+    it 'the order ID is a link to an admin-only view of that order' do
       visit admin_path
 
       within "#order-#{@order_1.id}" do

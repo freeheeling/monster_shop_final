@@ -22,7 +22,7 @@ describe Merchant, type: :model do
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       @tire = @meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
     end
-    xit 'no_orders' do
+    it 'no_orders' do
       expect(@meg.no_orders?).to eq(true)
 
       user = User.create(
@@ -52,7 +52,7 @@ describe Merchant, type: :model do
       expect(@meg.average_item_price).to eq(70)
     end
 
-    xit 'distinct_cities' do
+    it 'distinct_cities' do
       chain = @meg.items.create(name: 'Chain', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
       user_1 = User.create(
         name: 'Bob',
@@ -86,7 +86,7 @@ describe Merchant, type: :model do
       expect(@meg.distinct_cities.sort).to eq(%w[Denver Hershey])
     end
 
-    xit 'specific_orders' do
+    it 'specific_orders' do
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
       chain = @meg.items.create(name: 'Chain', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
       tire = @meg.items.create(name: 'tire', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
@@ -117,7 +117,7 @@ describe Merchant, type: :model do
       expect(subtotal).to eq([400.0, 360.0])
     end
 
-    xit 'five_most_popular' do
+    it 'five_most_popular' do
       chain = @meg.items.create(name: 'Chain', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
       tire = @meg.items.create(name: 'Tire', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
       helmet = @meg.items.create(name: 'Helmet', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
@@ -164,7 +164,7 @@ describe Merchant, type: :model do
       expect(name).to eq([lock.name, tire.name, chain.name, seat.name, helmet.name])
     end
 
-    xit 'five_least_popular' do
+    it 'five_least_popular' do
       chain = @meg.items.create(name: 'Chain', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
       tire = @meg.items.create(name: 'Tire', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
       helmet = @meg.items.create(name: 'Helmet', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)

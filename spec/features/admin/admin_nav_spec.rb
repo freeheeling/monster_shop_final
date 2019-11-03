@@ -27,7 +27,7 @@ RSpec.describe 'As an admin' do
     end
   end
 
-  xit 'does not have access to cart or merchant' do
+  it 'does not have access to cart or merchant' do
     admin = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 3)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)

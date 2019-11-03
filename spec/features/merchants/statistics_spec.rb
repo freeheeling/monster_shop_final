@@ -38,7 +38,7 @@ RSpec.describe 'merchant show page', type: :feature do
       @order_3.item_orders.create!(item: @dog_bone, price: @dog_bone.price, quantity: 5)
     end
 
-    xit 'I can see a merchants statistics' do
+    it 'I can see a merchants statistics' do
       visit "/merchants/#{@brian.id}"
 
       within '.merchant-stats' do

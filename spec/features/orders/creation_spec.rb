@@ -34,7 +34,7 @@ RSpec.describe('Order Creation') do
       click_on 'Checkout'
     end
 
-    xit 'I can create a new order' do
+    it 'I can create a new order' do
       name = 'Bert'
       address = '123 Sesame St.'
       city = 'NYC'
@@ -94,7 +94,7 @@ RSpec.describe('Order Creation') do
       end
     end
 
-    xit 'i cant create order if info not filled out' do
+    it 'i cant create order if info not filled out' do
       name = ''
       address = '123 Sesame St.'
       city = 'NYC'
@@ -113,7 +113,7 @@ RSpec.describe('Order Creation') do
       expect(page).to have_button('Create Order')
     end
 
-    xit 'after I create an order, I am taken to the order page and see a status of pending' do
+    it 'after I create an order, I am taken to the order page and see a status of pending' do
       fill_in :name, with: 'Bert'
       fill_in :address, with: '123 Sesame St.'
       fill_in :city, with: 'NYC'

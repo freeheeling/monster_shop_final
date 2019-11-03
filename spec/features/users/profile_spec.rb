@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'As a registered user' do
   describe 'when I visit my profile page' do
-    xit 'can see all profile data on the page except the password' do
+    it 'can see all profile data on the page except the password' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',
@@ -31,7 +31,7 @@ RSpec.describe 'As a registered user' do
       end
     end
 
-    xit 'has a link to edit the user profile data' do
+    it 'has a link to edit the user profile data' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',
@@ -53,7 +53,7 @@ RSpec.describe 'As a registered user' do
       expect(current_path).to eq('/profile/edit')
     end
 
-    xit 'has a link to user order page' do
+    it 'has a link to user order page' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',

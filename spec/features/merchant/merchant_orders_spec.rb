@@ -45,7 +45,7 @@ describe 'As a logged in Merchant (employee/admin)' do
     visit merchant_orders_path(@order)
   end
 
-  xit 'I only see the items in the order that are being purchased from my merchant' do
+  it 'I only see the items in the order that are being purchased from my merchant' do
     expect(current_path).to eq("/merchant/orders/#{@order.id}")
 
     expect(page).to have_content(@user.name)
@@ -65,14 +65,14 @@ describe 'As a logged in Merchant (employee/admin)' do
     expect(page).to_not have_content(@pencil.name)
   end
 
-  xit 'I can only fullfill orders if I have enough inventory' do
+  it 'I can only fullfill orders if I have enough inventory' do
     within "#item-#{@tire.id}" do
       expect(page).to_not have_link('Fulfill Order')
       expect(page).to have_content("There are not enough #{@tire.name} in inventory to fullfill this order")
     end
   end
 
-  xit 'I can click the fulfill order link and that item on the order is now fulfilled' do
+  it 'I can click the fulfill order link and that item on the order is now fulfilled' do
     within "#item-#{@pump.id}" do
       click_link 'Fulfill Order'
     end

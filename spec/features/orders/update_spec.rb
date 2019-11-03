@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Order Update' do
   describe 'when all items in an order have been fulfilled by their merchants' do
-    xit 'order status changes from pending to packaged' do
+    it 'order status changes from pending to packaged' do
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       @tire = @meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 5)
       @pump = @meg.items.create(name: 'Bike Pump', description: 'It works fast!', price: 25, image: 'https://images-na.ssl-images-amazon.com/images/I/71Wa47HMBmL._SY550_.jpg', inventory: 15)

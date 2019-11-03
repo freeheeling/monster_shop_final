@@ -36,23 +36,23 @@ describe Order, type: :model do
       @item_order_2 = @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3, merchant_id: @brian.id, status: 1)
     end
 
-    xit 'grand_total' do
+    it 'grand_total' do
       expect(@order_1.grand_total).to eq(230)
     end
 
-    xit 'total_quantity' do
+    it 'total_quantity' do
       expect(@order_1.total_quantity).to eq(5)
     end
 
-    xit 'find_order' do
+    it 'find_order' do
       expect(@order_1.find_order(@meg.id).count).to eq(1)
     end
 
-    xit 'all_items_fulfilled?' do
+    it 'all_items_fulfilled?' do
       expect(@order_1.all_items_fulfilled?).to eq(true)
     end
 
-    xit 'update_status' do
+    it 'update_status' do
       expect(@order_1.status).to eq('Pending')
 
       @order_1.update_status(1)
@@ -60,7 +60,7 @@ describe Order, type: :model do
       expect(@order_1.status).to eq('Packaged')
     end
 
-    xit 'packaged?' do
+    it 'packaged?' do
       expect(@order_1.packaged?).to eq(false)
 
       order_2 = @user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033, status: 1)
@@ -70,7 +70,7 @@ describe Order, type: :model do
   end
 
   describe 'class_method' do
-    xit 'sort_orders' do
+    it 'sort_orders' do
       dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
       pull_toy = dog_shop.items.create(name: 'Pull Toy', description: 'Great pull toy!', price: 10, image: 'http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg', inventory: 32)
 

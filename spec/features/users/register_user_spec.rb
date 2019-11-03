@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 describe 'User Registration' do
-  xit 'there is a registration page and form to create a new user' do
+  it 'there is a registration page and form to create a new user' do
     visit welcome_path
 
     within 'nav' do
@@ -27,7 +27,7 @@ describe 'User Registration' do
     expect(page).to have_content('Welcome, Bob! You are now logged in and registered.')
   end
 
-  xit 'as a new user I must fill out entire form' do
+  it 'as a new user I must fill out entire form' do
     visit register_path
 
     click_button 'Create User'
@@ -42,7 +42,7 @@ describe 'User Registration' do
     expect(page).to have_content('Password digest can\'t be blank')
   end
 
-  xit 'as a new user I must register with a unique email address' do
+  it 'as a new user I must register with a unique email address' do
     User.create!(name: 'Bob', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'bob@email.com', password: 'secure')
 
     visit register_path

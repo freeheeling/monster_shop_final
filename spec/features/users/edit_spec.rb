@@ -24,7 +24,7 @@ RSpec.describe 'As a registered user' do
       end
     end
 
-    xit 'is prepopulated with my previous data' do
+    it 'is prepopulated with my previous data' do
       expect(find_field(:name).value).to eq(@user.name)
       expect(find_field(:address).value).to eq(@user.address)
       expect(find_field(:city).value).to eq(@user.city)
@@ -33,7 +33,7 @@ RSpec.describe 'As a registered user' do
       expect(find_field(:email).value).to eq(@user.email)
     end
 
-    xit 'edited data shows on the profile page' do
+    it 'edited data shows on the profile page' do
       fill_in :name, with: 'Bob'
       fill_in :address, with: '542 Oak Ave'
       fill_in :city, with: 'Boulder'
@@ -57,7 +57,7 @@ RSpec.describe 'As a registered user' do
       end
     end
 
-    xit 'cannot be edited with an email already in use' do
+    it 'cannot be edited with an email already in use' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',
@@ -79,7 +79,7 @@ RSpec.describe 'As a registered user' do
   end
 
   describe 'when I visit the edit password form' do
-    xit 'I see a link to edit my password' do
+    it 'I see a link to edit my password' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',
@@ -112,7 +112,7 @@ RSpec.describe 'As a registered user' do
       expect(page).to have_content('Your password has been updated successfully!')
     end
 
-    xit 'password cannot be updated if they do not match' do
+    it 'password cannot be updated if they do not match' do
       user = User.create(
         name: 'Bob',
         address: '123 Main',

@@ -30,7 +30,7 @@ describe 'As a logged in Merchant (employee/admin)' do
     expect(current_path).to eq(merchant_user_items_path)
   end
 
-  xit 'I see a list of pending orders with items I sell' do
+  it 'I see a list of pending orders with items I sell' do
     user = User.create!(
       name: 'User_bob',
       address: '123 Main',

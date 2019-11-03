@@ -34,7 +34,7 @@ RSpec.describe 'Cart show' do
       expect(current_path).to eq('/orders/new')
     end
 
-    xit 'If I am not a registerd user, there is no checkout link, but there is a prompt to register or login' do
+    it 'If I am not a registerd user, there is no checkout link, but there is a prompt to register or login' do
       visit cart_path
 
       expect(page).to have_content('Please Register or Log In to Checkout')

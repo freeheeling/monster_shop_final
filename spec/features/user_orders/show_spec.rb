@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'As a registered user' do
   describe 'When I visit a profile order show page' do
-    xit 'displays the order with all info' do
+    it 'displays the order with all info' do
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
 
@@ -58,7 +58,7 @@ RSpec.describe 'As a registered user' do
       end
     end
 
-    xit 'renders a 404 if the show page does not exist' do
+    it 'renders a 404 if the show page does not exist' do
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
 
@@ -81,7 +81,7 @@ RSpec.describe 'As a registered user' do
       expect(page).to have_content('The page you were looking for doesn\'t exist.')
     end
 
-    xit 'displays a link to cancel the order' do
+    it 'displays a link to cancel the order' do
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
 
@@ -126,7 +126,7 @@ RSpec.describe 'As a registered user' do
       expect(item_order_2.status).to eq('Unfulfilled')
     end
 
-    xit 'does not display a link if the order is shipped or cancelled' do
+    it 'does not display a link if the order is shipped or cancelled' do
       meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
       brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
 

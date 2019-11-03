@@ -33,7 +33,7 @@ RSpec.describe 'item delete', type: :feature do
         expect(Review.where(id: review_1.id)).to be_empty
       end
 
-      xit 'it cannot delete items with orders' do
+      it 'it cannot delete items with orders' do
         user = User.create(name: 'Bob', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'user@email.com', password: 'secure')
         order_1 = user.orders.create!(name: 'Meg', address: '123 Stang St', city: 'Hershey', state: 'PA', zip: 80_218)
         order_1.item_orders.create!(item: @chain, price: @chain.price, quantity: 2)

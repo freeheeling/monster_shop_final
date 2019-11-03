@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'As an Admin User' do
   describe 'when I visit the merchant index page' do
-    xit 'clicking a merchant name redirects to an admin merchant show page idential to that merchants dashboard' do
+    it 'clicking a merchant name redirects to an admin merchant show page idential to that merchants dashboard' do
       user = User.create!(
         name: 'User_bob',
         address: '123 Main',

@@ -31,7 +31,7 @@ RSpec.describe('New Order Page') do
       click_on 'Add To Cart'
     end
 
-    xit 'I see all the information about my current cart' do
+    it 'I see all the information about my current cart' do
       visit '/cart'
 
       click_on 'Checkout'
@@ -63,7 +63,7 @@ RSpec.describe('New Order Page') do
       expect(page).to have_content('Total: $142')
     end
 
-    xit 'I see a form where I can enter my shipping info' do
+    it 'I see a form where I can enter my shipping info' do
       visit '/cart'
       click_on 'Checkout'
 
