@@ -1,23 +1,25 @@
 <section id='user-info'>
-  <p>Username: <%= current_user.name %></p>
+  <p>Name: <%= current_user.name %></p>
   <p>Email: <%= current_user.email %></p>
   <p><%= link_to 'Edit Profile', profile_edit_path %></p>
   <p><%= link_to 'Edit Password', profile_edit_password_path %></p>
 </section><br>
 
+<% if !site_admin? %>
+<section id='user-orders'>
+  <p><%= link_to 'My Orders', profile_orders_path %></p>
+</section>
+<% end %><br>
+
 <section class='addresses'>
   <h4>Addresses:</h4>
   <% current_user.addresses.each do |address| %>
-  <section id="address-<%= address.id %>">
-    <p>Nickname: <%= address.alias %></p>
-    <p><%= address.street %></p>
-    <p><%= address.city %> <%= address.state %>, <%= address.zip %></p>
-  </section>
+    <section id="address-<%= address.id %>">
+      <p>Nickname: <%= address.alias %></p>
+      <p><%= address.street %></p>
+      <p><%= address.city %> <%= address.state %>, <%= address.zip %></p>
+    </section><br>
   <% end %>
 </section><br>
 
-<% if !site_admin? %>
-  <section id='user-orders'>
-    <p><%= link_to 'My Orders', profile_orders_path %></p>
-  </section>
-<% end %>
+<%= link_to 'Add Address', '/profile/addresses/new' %>
