@@ -4,24 +4,15 @@ require 'rails_helper'
 
 describe 'As a logged in Merchant (employee/admin)' do
   before(:each) do
-    @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
-    @merchant_employee = @meg.users.create!(
-      name: 'Bob',
-      address: '123 Main',
-      city: 'Denver',
-      state: 'CO',
-      zip: 80_233,
-      email: 'bob@email.com',
-      password: 'secure',
-      role: 1
-    )
-    @tire = @meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
-    @pump = @meg.items.create(name: 'Bike Pump', description: 'It works fast!', price: 25, image: 'https://images-na.ssl-images-amazon.com/images/I/71Wa47HMBmL._SY550_.jpg', inventory: 15)
-    @helmet = @meg.items.create(name: 'Helmet', description: 'Protects your brain. Try it!', price: 15, image: 'https://www.rei.com/media/product/1289320004', inventory: 20)
+    meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
+    merchant_employee = meg.users.create!(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 1)
+    @tire = meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
+    @pump = meg.items.create(name: 'Bike Pump', description: 'It works fast!', price: 25, image: 'https://images-na.ssl-images-amazon.com/images/I/71Wa47HMBmL._SY550_.jpg', inventory: 15)
+    @helmet = meg.items.create(name: 'Helmet', description: 'Protects your brain. Try it!', price: 15, image: 'https://www.rei.com/media/product/1289320004', inventory: 20)
 
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_employee)
   end
-  
+
   it 'on my dashboard, I see the name and address of the merchant I work for' do
     visit merchant_dashboard_path
 

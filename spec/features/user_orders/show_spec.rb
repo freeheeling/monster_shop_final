@@ -151,7 +151,7 @@ RSpec.describe 'As a registered user' do
       item_order_2 = order_1.item_orders.create!(item: pull_toy, price: pull_toy.price, quantity: 3, status: 1)
 
       visit profile_order_path(order_1)
-      
+
       expect(page).to_not have_link('Cancel Order')
     end
   end

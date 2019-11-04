@@ -5,18 +5,10 @@ require 'rails_helper'
 RSpec.describe 'As a merchant' do
   describe 'merchant admin' do
     describe 'when I click add item from the merchant items index page' do
-      it 'can create a new item from the new item form' do
+      before(:each) do
         meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
-        merchant_admin = meg.users.create!(
-          name: 'Bob',
-          address: '123 Main',
-          city: 'Denver',
-          state: 'CO',
-          zip: 80_233,
-          email: 'bob@email.com',
-          password: 'secure',
-          role: 2
-        )
+        merchant_admin = meg.users.create!(name: 'Bob', email: 'bob@email.com', password: 'secure', role: 2)
+
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_admin)
 
         visit merchant_user_items_path
@@ -24,7 +16,9 @@ RSpec.describe 'As a merchant' do
         click_on 'Add New Item'
 
         expect(current_path).to eq(merchant_items_new_path)
+      end
 
+      it 'can create a new item from the new item form' do
         fill_in :name, with: 'Chamois Buttr'
         fill_in :price, with: 18
         fill_in :description, with: "No more chaffin'!"
@@ -51,25 +45,6 @@ RSpec.describe 'As a merchant' do
       end
 
       it 'can create a new item without and image' do
-        meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
-        merchant_admin = meg.users.create!(
-          name: 'Bob',
-          address: '123 Main',
-          city: 'Denver',
-          state: 'CO',
-          zip: 80_233,
-          email: 'bob@email.com',
-          password: 'secure',
-          role: 2
-        )
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_admin)
-
-        visit merchant_user_items_path
-
-        click_on 'Add New Item'
-
-        expect(current_path).to eq(merchant_items_new_path)
-
         fill_in :name, with: 'Chamois Buttr'
         fill_in :price, with: 18
         fill_in :description, with: "No more chaffin'!"
@@ -80,8 +55,6 @@ RSpec.describe 'As a merchant' do
 
         new_item = Item.last
 
-        # Optional images?
-
         expect(new_item.name).to eq('Chamois Buttr')
         expect(new_item.price).to eq(18)
         expect(new_item.description).to eq("No more chaffin'!")
@@ -91,25 +64,6 @@ RSpec.describe 'As a merchant' do
       end
 
       it 'must have both price and inventory greater that zero for item creation' do
-        meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
-        merchant_admin = meg.users.create!(
-          name: 'Bob',
-          address: '123 Main',
-          city: 'Denver',
-          state: 'CO',
-          zip: 80_233,
-          email: 'bob@email.com',
-          password: 'secure',
-          role: 2
-        )
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_admin)
-
-        visit merchant_user_items_path
-
-        click_on 'Add New Item'
-
-        expect(current_path).to eq(merchant_items_new_path)
-
         fill_in :name, with: 'Chamois Buttr'
         fill_in :price, with: -1
         fill_in :description, with: "No more chaffin'!"
@@ -123,25 +77,6 @@ RSpec.describe 'As a merchant' do
       end
 
       it 'forms cannot be left blank' do
-        meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
-        merchant_admin = meg.users.create!(
-          name: 'Bob',
-          address: '123 Main',
-          city: 'Denver',
-          state: 'CO',
-          zip: 80_233,
-          email: 'bob@email.com',
-          password: 'secure',
-          role: 2
-        )
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_admin)
-
-        visit merchant_user_items_path
-
-        click_on 'Add New Item'
-
-        expect(current_path).to eq(merchant_items_new_path)
-
         fill_in :name, with: nil
         fill_in :price, with: 5
         fill_in :description, with: nil

@@ -21,15 +21,7 @@ RSpec.describe 'Cart show' do
     end
 
     it 'If I am a registered user, there is a link to checkout' do
-      user = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure'
-      )
+      user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure')
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
