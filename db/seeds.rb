@@ -48,32 +48,39 @@ dog_bowl.reviews.create(title: "It's okay.", content: 'Not that bad, I guess.', 
 dog_bowl.reviews.create(title: 'Amazing!', content: 'Truly changed my life!', rating: 5)
 
 # regular user
-# user_1 = User.create(name: 'User 1', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'user_1@user.com', password: 'secure', role: 0)
-# user_2 = User.create(name: 'User 2', address: '987 First', city: 'Dallas', state: 'TX', zip: 75_001, email: 'user_2@user.com', password: 'secure', role: 0)
-#
-# # merchant employee
-# bike_employee = bike_shop.users.create(name: 'Bike Employee', address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203, email: 'bike_employee@user.com', password: 'secure', role: 1)
-# dog_employee = dog_shop.users.create(name: 'Dog Employee', address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210, email: 'dog_employee@user.com', password: 'secure', role: 1)
-#
-# # merchant admin
-# bike_admin = bike_shop.users.create(name: 'Bike Admin', address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203, email: 'bike_admin@user.com', password: 'secure', role: 2)
-# dog_admin = dog_shop.users.create(name: 'Dog Admin', address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210, email: 'dog_admin@user.com', password: 'secure', role: 2)
-#
-# # site admin
-# site_admin = User.create(name: 'Site Admin', address: '123 First', city: 'Denver', state: 'CO', zip: 80_233, email: 'site_admin@user.com', password: 'secure', role: 3)
-#
-# # orders
-# order_1 = user_1.orders.create(name: 'User 1', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
-# item_order_1a = order_1.item_orders.create(order_id: order_1.id, item_id: tire.id, quantity: 1, price: 100, merchant_id: bike_shop.id)
-# item_order_1b = order_1.item_orders.create(order_id: order_1.id, item_id: helmet.id, quantity: 1, price: 15, merchant_id: bike_shop.id)
-# item_order_1c = order_1.item_orders.create(order_id: order_1.id, item_id: pull_toy.id, quantity: 2, price: 10, merchant_id: dog_shop.id)
-#
-# order_2 = user_2.orders.create(name: 'User 2', address: '987 First', city: 'Dallas', state: 'TX', zip: 75_001)
-# item_order_2a = order_2.item_orders.create(order_id: order_2.id, item_id: pull_toy.id, quantity: 1, price: 10, merchant_id: dog_shop.id)
-# item_order_2b = order_2.item_orders.create(order_id: order_2.id, item_id: tire.id, quantity: 2, price: 100, merchant_id: bike_shop.id)
-#
-# order_3 = user_1.orders.create(name: 'User 1', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
-# item_order_3a = order_3.item_orders.create(order_id: order_3.id, item_id: helmet.id, quantity: 2, price: 15, merchant_id: bike_shop.id)
-#
-# order_4 = user_2.orders.create(name: 'User 2', address: '987 First', city: 'Dallas', state: 'TX', zip: 75_001)
-# item_order_4a = order_4.item_orders.create(order_id: order_4.id, item_id: pull_toy.id, quantity: 2, price: 10, merchant_id: dog_shop.id)
+user_1 = User.create(name: 'User 1', email: 'user_1@user.com', password: 'secure', role: 0)
+user_1.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+user_2 = User.create(name: 'User 2', email: 'user_2@user.com', password: 'secure', role: 0)
+user_2.addresses.create(street: '987 First', city: 'Dallas', state: 'TX', zip: 75_001)
+
+# merchant employee
+bike_employee = bike_shop.users.create(name: 'Bike Employee', email: 'bike_employee@user.com', password: 'secure', role: 1)
+bike_employee.addresses.create(street: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
+dog_employee = dog_shop.users.create(name: 'Dog Employee', email: 'dog_employee@user.com', password: 'secure', role: 1)
+dog_employee.addresses.create(street: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
+
+# merchant admin
+bike_admin = bike_shop.users.create(name: 'Bike Admin', email: 'bike_admin@user.com', password: 'secure', role: 2)
+bike_admin.addresses.create(street: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
+dog_admin = dog_shop.users.create(name: 'Dog Admin', email: 'dog_admin@user.com', password: 'secure', role: 2)
+dog_admin.addresses.create(street: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
+
+# site admin
+site_admin = User.create(name: 'Site Admin', email: 'site_admin@user.com', password: 'secure', role: 3)
+site_admin.addresses.create(street: '123 First', city: 'Denver', state: 'CO', zip: 80_233)
+
+# orders
+order_1 = user_1.orders.create(name: 'User 1', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+item_order_1a = order_1.item_orders.create(order_id: order_1.id, item_id: tire.id, quantity: 1, price: 100, merchant_id: bike_shop.id)
+item_order_1b = order_1.item_orders.create(order_id: order_1.id, item_id: helmet.id, quantity: 1, price: 15, merchant_id: bike_shop.id)
+item_order_1c = order_1.item_orders.create(order_id: order_1.id, item_id: pull_toy.id, quantity: 2, price: 10, merchant_id: dog_shop.id)
+
+order_2 = user_2.orders.create(name: 'User 2', address: '987 First', city: 'Dallas', state: 'TX', zip: 75_001)
+item_order_2a = order_2.item_orders.create(order_id: order_2.id, item_id: pull_toy.id, quantity: 1, price: 10, merchant_id: dog_shop.id)
+item_order_2b = order_2.item_orders.create(order_id: order_2.id, item_id: tire.id, quantity: 2, price: 100, merchant_id: bike_shop.id)
+
+order_3 = user_1.orders.create(name: 'User 1', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+item_order_3a = order_3.item_orders.create(order_id: order_3.id, item_id: helmet.id, quantity: 2, price: 15, merchant_id: bike_shop.id)
+
+order_4 = user_2.orders.create(name: 'User 2', address: '987 First', city: 'Dallas', state: 'TX', zip: 75_001)
+item_order_4a = order_4.item_orders.create(order_id: order_4.id, item_id: pull_toy.id, quantity: 2, price: 10, merchant_id: dog_shop.id)
