@@ -19,7 +19,9 @@
       <p><%= address.street %></p>
       <p><%= address.city %> <%= address.state %>, <%= address.zip %></p>
       <p><%= link_to 'Edit Address', "/profile/addresses/#{address.id}/edit" %></p>
-      <p><%= link_to 'Delete Address', "/profile/addresses/#{address.id}", method: :delete %></p>
+      <% unless address.shipped_orders? %>
+        <p><%= link_to 'Delete Address', "/profile/addresses/#{address.id}", method: :delete %></p>
+      <% end %>
     </section><br>
   <% end %>
 </section><br>
