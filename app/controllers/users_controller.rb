@@ -3,11 +3,13 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+    @addresses = @user.addresses.new
   end
 
   def create
     @user = User.create(user_params)
     if @user.save
+      @user.addresses.create(address_params)
       session[:user_id] = @user.id
       flash[:success] = "Welcome, #{@user.name}! You are now logged in and registered."
       redirect_to profile_path
@@ -23,6 +25,7 @@ class UsersController < ApplicationController
 
   def update_profile
     if current_user.update(update_profile_params)
+      current_user.addresses.where(alias: 'Home').update(upadate_address_params)
       flash[:success] = 'Your profile data has been updated!'
       redirect_to profile_path
     else
@@ -46,16 +49,19 @@ class UsersController < ApplicationController
   end
 
   private
+    def user_params
+      params.permit(:name, :email, :password, :password_confirmation)
+    end
 
-  def user_params
-    params.permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
-  end
+    def update_profile_params
+      params.permit(:name, :address, :city, :state, :zip, :email)
+    end
 
-  def update_profile_params
-    params.permit(:name, :address, :city, :state, :zip, :email)
-  end
+    def update_password_params
+      params.permit(:password, :password_confirmation)
+    end
 
-  def update_password_params
-    params.permit(:password, :password_confirmation)
-  end
+    def address_params
+      params.permit(:alias, :street, :city, :state, :zip)
+    end
 end

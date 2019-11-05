@@ -15,6 +15,11 @@ Rails.application.routes.draw do
 
   resources :orders, only: %i[new create show]
 
+  get '/profile/addresses/new', to: 'addresses#new'
+  get '/profile/addresses/:id/edit', to: 'addresses#edit'
+  patch '/profile/addresses/:id', to: 'addresses#update'
+  post '/profile/addresses', to: 'addresses#create'
+
   post '/cart/:item_id', to: 'cart#add_item'
   get '/cart', to: 'cart#show'
   delete '/cart', to: 'cart#empty'
