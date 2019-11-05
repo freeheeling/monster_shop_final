@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'New Address' do
-  it 'can be created on user profile page' do
+  it 'can be created via a link on user profile page' do
     user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure')
     address = user.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
