@@ -18,7 +18,8 @@
       <p>Nickname: <%= address.alias %></p>
       <p><%= address.street %></p>
       <p><%= address.city %> <%= address.state %>, <%= address.zip %></p>
-      <%= link_to 'Edit Address', "/profile/addresses/#{address.id}/edit" %>
+      <p><%= link_to 'Edit Address', "/profile/addresses/#{address.id}/edit" %></p>
+      <p><%= link_to 'Delete Address', "/profile/addresses/#{address.id}", method: :delete %></p>
     </section><br>
   <% end %>
 </section><br>
