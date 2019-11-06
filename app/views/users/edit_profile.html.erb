@@ -2,10 +2,10 @@
   <%=
     render partial: 'partials/user_form_template', locals: {
       name: current_user.name,
-      address: current_user.address,
-      city: current_user.city,
-      state: current_user.state,
-      zip: current_user.zip,
+      street: current_user.addresses.street,
+      city: current_user.addresses.city,
+      state: current_user.addresses.state,
+      zip: current_user.addresses.zip,
       email: current_user.email
     }
   %>
