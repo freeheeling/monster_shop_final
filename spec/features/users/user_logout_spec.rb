@@ -7,15 +7,7 @@ RSpec.describe 'As a User' do
     it 'takes me back to the home page and deletes cart contents' do
       visit login_path
 
-      user = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure'
-      )
+      user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure')
 
       fill_in :email, with: user.email
       fill_in :password, with: user.password

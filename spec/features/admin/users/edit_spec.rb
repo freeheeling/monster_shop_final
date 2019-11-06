@@ -3,25 +3,10 @@ require 'rails_helper'
 RSpec.describe 'As an admin user' do
   describe 'when I visit a user\'s profile page' do
     before(:each) do
-      @user = User.create(
-        name: 'Bob',
-        address: '123 Main',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'bob@email.com',
-        password: 'secure'
-      )
+      @user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure')
+      address = @user.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
-      @site_admin = User.create(
-        name: 'Site Admin',
-        address: '123 First',
-        city: 'Denver',
-        state: 'CO',
-        zip: 80_233,
-        email: 'site_admin@user.com',
-        password: 'secure',
-        role: 3)
+      @site_admin = User.create(name: 'Site Admin', email: 'site_admin@user.com', password: 'secure', role: 3)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@site_admin)
     end

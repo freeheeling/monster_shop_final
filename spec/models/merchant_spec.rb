@@ -51,45 +51,19 @@ describe Merchant, type: :model do
       user_1 = User.create(name: 'Bob',email: 'bob@email.com', password: 'secure')
       address_1 = user_1.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
       address_2 = user_1.addresses.create(address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
-      address_3 = user_1.addresses.create(address: '123 Mike Ave', city: 'Denver', state: 'CO', zip: 17_033)
-      order_1 = user_1.orders.create(name: 'Meg', address_id: address_1.id)
-      order_2 = user_1.orders.create(name: 'Brian', address_id: address_2.id)
-      order_3 = user_1.orders.create(name: 'Dao', address_id: address_3.id)
 
       user_2 = User.create(name: 'Dan',email: 'Dan@email.com', password: 'secure')
-      address_4 = user_2.addresses.create(address: '123 Main', city: 'Boulder', state: 'CO', zip: 80_303)
-      order_4 = user_2.orders.create(name: 'Dao', address_id: address_4.id)
+      address_3 = user_2.addresses.create(address: '123 Main', city: 'Boulder', state: 'CO', zip: 80_303)
 
-      # user_1 = User.create(
-      #   name: 'Bob',
-      #   address: '123 Main',
-      #   city: 'Denver',
-      #   state: 'CO',
-      #   zip: 80_233,
-      #   email: 'bob@email.com',
-      #   password: 'secure'
-      # )
-      #
-      # user_2 = User.create(
-      #   name: 'Dan',
-      #   address: '123 Main',
-      #   city: 'Boulder',
-      #   state: 'CO',
-      #   zip: 80_303,
-      #   email: 'Dan@email.com',
-      #   password: 'secure',
-      #   enabled?: false
-      # )
-      # order_1 = user_1.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
-      # order_2 = user_1.orders.create!(name: 'Brian', address: '123 Brian Ave', city: 'Denver', state: 'CO', zip: 17_033)
-      # order_3 = user_1.orders.create!(name: 'Dao', address: '123 Mike Ave', city: 'Denver', state: 'CO', zip: 17_033)
-      # order_4 = user_2.orders.create!(name: 'Dao', address: '123 Mike Ave', city: 'Boulder', state: 'CO', zip: 80_303)
+      order_1 = user_1.orders.create(name: 'Meg', address_id: address_1.id)
+      order_2 = user_1.orders.create(name: 'Brian', address_id: address_2.id)
+      order_3 = user_2.orders.create(name: 'Dao', address_id: address_3.id)
+
       order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
       order_2.item_orders.create!(item: chain, price: chain.price, quantity: 2)
       order_3.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
-      order_4.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
 
-      expect(@meg.distinct_cities.sort).to eq(%w[Denver Hershey])
+      expect(@meg.distinct_cities.sort).to eq(%w[Boulder Denver Hershey])
     end
 
     it 'specific_orders' do

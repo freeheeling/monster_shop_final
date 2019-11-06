@@ -31,18 +31,11 @@ describe 'As a logged in Merchant (employee/admin)' do
   end
 
   it 'I see a list of pending orders with items I sell' do
-    user = User.create!(
-      name: 'User_bob',
-      address: '123 Main',
-      city: 'Denver',
-      state: 'CO',
-      zip: 80_233,
-      email: 'user@email.com',
-      password: 'secure'
-    )
+    user = User.create!( name: 'User_bob', email: 'user@email.com', password: 'secure')
+    address = user.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
-    order_1 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033, status: 'Pending')
-    order_2 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033, status: 'Pending')
+    order_1 = user.orders.create!(name: 'Meg', address_id: address.id, status: 'Pending')
+    order_2 = user.orders.create!(name: 'Meg', address_id: address.id, status: 'Pending')
 
     order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
     order_1.item_orders.create!(item: @helmet, price: @helmet.price, quantity: 2)
