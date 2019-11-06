@@ -17,9 +17,9 @@
     <section id="address-<%= address.id %>">
       <p>Nickname: <%= address.alias %></p>
       <p><%= address.address %></p>
-      <p><%= address.city %> <%= address.state %>, <%= address.zip %></p>
-      <p><%= link_to 'Edit Address', "/profile/addresses/#{address.id}/edit" %></p>
+      <p><%= address.city %>, <%= address.state %> <%= address.zip %></p>
       <% unless address.shipped_orders? %>
+        <p><%= link_to 'Edit Address', "/profile/addresses/#{address.id}/edit" %></p>
         <p><%= link_to 'Delete Address', "/profile/addresses/#{address.id}", method: :delete %></p>
       <% end %>
     </section><br>
