@@ -9,10 +9,10 @@ RSpec.describe 'As an admin user' do
       pull_toy = dog_shop.items.create(name: 'Pull Toy', description: 'Great pull toy!', price: 10, image: 'http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg', inventory: 32)
 
       @user_1 = User.create(name: 'User 1', email: 'user_1@email.com', password: 'secure', role: 0)
-      address_1 = @user_1.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+      address_1 = @user_1.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
       @user_2 = User.create(name: 'User 2', email: 'user_2@email.com', password: 'secure', role: 0)
-      address_2 = @user_2.addresses.create(street: '987 First', city: 'Dallas', state: 'TX', zip: 75_001)
+      address_2 = @user_2.addresses.create(address: '987 First', city: 'Dallas', state: 'TX', zip: 75_001)
 
       @order_1 = @user_1.orders.create!(name: 'User 1', address_id: address_1.id, status: 2)
       @order_1.item_orders.create(order_id: @order_1.id, item_id: pull_toy.id, quantity: 1, price: 100, merchant_id: dog_shop.id)
@@ -27,7 +27,7 @@ RSpec.describe 'As an admin user' do
       @order_4.item_orders.create(order_id: @order_4.id, item_id: pull_toy.id, quantity: 2, price: 10, merchant_id: dog_shop.id)
 
       site_admin = User.create(name: 'Site Admin', email: 'site_admin@user.com', password: 'secure', role: 3)
-      address_3 = site_admin.addresses.create(street: '123 First', city: 'Denver', state: 'CO', zip: 80_233)
+      address_3 = site_admin.addresses.create(address: '123 First', city: 'Denver', state: 'CO', zip: 80_233)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(site_admin)
     end

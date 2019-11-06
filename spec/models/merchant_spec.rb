@@ -26,7 +26,7 @@ describe Merchant, type: :model do
       expect(@meg.no_orders?).to eq(true)
 
       user = User.create(name: 'Bob',email: 'bob@email.com', password: 'secure')
-      address = user.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+      address = user.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
       order = user.orders.create(name: 'Meg', address_id: address.id)
       order.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
 
@@ -49,15 +49,15 @@ describe Merchant, type: :model do
       chain = @meg.items.create(name: 'Chain', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
 
       user_1 = User.create(name: 'Bob',email: 'bob@email.com', password: 'secure')
-      address_1 = user_1.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
-      address_2 = user_1.addresses.create(street: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
-      address_3 = user_1.addresses.create(street: '123 Mike Ave', city: 'Denver', state: 'CO', zip: 17_033)
+      address_1 = user_1.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+      address_2 = user_1.addresses.create(address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
+      address_3 = user_1.addresses.create(address: '123 Mike Ave', city: 'Denver', state: 'CO', zip: 17_033)
       order_1 = user_1.orders.create(name: 'Meg', address_id: address_1.id)
       order_2 = user_1.orders.create(name: 'Brian', address_id: address_2.id)
       order_3 = user_1.orders.create(name: 'Dao', address_id: address_3.id)
 
       user_2 = User.create(name: 'Dan',email: 'Dan@email.com', password: 'secure')
-      address_4 = user_2.addresses.create(street: '123 Main', city: 'Boulder', state: 'CO', zip: 80_303)
+      address_4 = user_2.addresses.create(address: '123 Main', city: 'Boulder', state: 'CO', zip: 80_303)
       order_4 = user_2.orders.create(name: 'Dao', address_id: address_4.id)
 
       # user_1 = User.create(
@@ -98,7 +98,7 @@ describe Merchant, type: :model do
       tire = @meg.items.create(name: 'tire', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
       bone = brian.items.create(name: 'bone', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
       user = User.create(name: 'Bob',email: 'bob@email.com', password: 'secure')
-      address = user.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+      address = user.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
       order_1 = user.orders.create(name: 'Meg', address_id: address.id)
       order_1.item_orders.create!(item: bone, price: bone.price, quantity: 5)
@@ -126,10 +126,10 @@ describe Merchant, type: :model do
       lock = @meg.items.create(name: 'Lock', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
 
       user_1 = User.create(name: 'Bob',email: 'bob@email.com', password: 'secure')
-      address_1 = user_1.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+      address_1 = user_1.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
       user_2 = User.create(name: 'Dan',email: 'Dan@email.com', password: 'secure', enabled?: false)
-      address_2 = user_2.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+      address_2 = user_2.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
       order_1 = user_1.orders.create(name: 'Meg', address_id: address_1.id)
 
@@ -159,10 +159,10 @@ describe Merchant, type: :model do
       lock = @meg.items.create(name: 'Lock', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
 
       user_1 = User.create(name: 'Bob',email: 'bob@email.com', password: 'secure')
-      address_1 = user_1.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+      address_1 = user_1.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
       user_2 = User.create(name: 'Dan',email: 'Dan@email.com', password: 'secure', enabled?: false)
-      address_2 = user_2.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+      address_2 = user_2.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
       order_1 = user_1.orders.create(name: 'Meg', address_id: address_1.id)
 

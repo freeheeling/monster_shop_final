@@ -9,7 +9,7 @@ RSpec.describe 'User Registration' do
    expect(current_path).to eq(register_path)
 
    fill_in :name, with: 'Bob'
-   fill_in :street, with: '123 Main St'
+   fill_in :address, with: '123 Main St'
    fill_in :city, with: 'Denver'
    fill_in :state, with: 'CO'
    fill_in :zip, with: 80_233
