@@ -44,4 +44,8 @@ class Order < ApplicationRecord
   def packaged?
     status == 'Packaged'
   end
+
+  def pending?
+    status == 'Pending'
+  end
 end

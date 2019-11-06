@@ -22,7 +22,7 @@ describe Order, type: :model do
       @tire = @meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
       @pull_toy = @brian.items.create(name: 'Pull Toy', description: 'Great pull toy!', price: 10, image: 'http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg', inventory: 32)
       @user = User.create(name: 'Bob', email: 'bob@email.com', password: 'secure')
-      @address = @user.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+      @address = @user.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
       @order_1 = @user.orders.create!(name: 'Meg', address_id: @address.id)
 
       @item_order_1 = @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2, merchant_id: @meg.id, status: 1)
@@ -60,6 +60,14 @@ describe Order, type: :model do
 
       expect(order_2.packaged?).to eq(true)
     end
+
+    it 'pending?' do
+      expect(@order_1.pending?).to eq(true)
+
+      order_2 = @user.orders.create!(name: 'Meg', address_id: @address.id, status: 1)
+
+      expect(order_2.pending?).to eq(false)
+    end
   end
 
   describe 'class_method' do
@@ -68,7 +76,7 @@ describe Order, type: :model do
       pull_toy = dog_shop.items.create(name: 'Pull Toy', description: 'Great pull toy!', price: 10, image: 'http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg', inventory: 32)
 
       user = User.create(name: 'User 1', email: 'user_1@email.com', password: 'secure', role: 0)
-      address = user.addresses.create(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+      address = user.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
       order_1 = user.orders.create(name: 'User 1', address_id: address.id, status: 2)
       order_2 = user.orders.create(name: 'User 2', address_id: address.id, status: 3)
