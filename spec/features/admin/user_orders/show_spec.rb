@@ -2,36 +2,36 @@ require 'rails_helper'
 
 RSpec.describe 'As an Admin User' do
   describe 'when I visit a user\'s profile' do
-    xit 'I can click a link and view the user\'s order show page' do
-      user_1 = User.create(name: 'User 1', email: 'user_1@user.com', password: 'secure', role: 0)
-      address_1 = user_1.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+    it 'I can click a link and view the user\'s order show page' do
+      user = User.create(name: 'User 1', email: 'user_1@user.com', password: 'secure', role: 0)
+      address = user.addresses.create(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
       dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
       bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '125 Bike St.', city: 'Denver', state: 'CO', zip: 80_210)
       tire = bike_shop.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
       pull_toy = dog_shop.items.create(name: 'Pull Toy', description: 'Great pull toy!', price: 10, image: 'http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg', inventory: 32)
-      order_1 = user_1.orders.create(name: 'User 1', address_id: address_1.id, status: 2)
-      item_order_1 = order_1.item_orders.create(order_id: order_1.id, item_id: tire.id, quantity: 2, price: 15, merchant_id: bike_shop.id)
-      item_order_2 = order_1.item_orders.create(order_id: order_1.id, item_id: pull_toy.id, quantity: 1, price: 100, merchant_id: dog_shop.id)
+      order = user.orders.create(name: 'User 1', address_id: address.id, status: 2)
+      item_order_1 = order.item_orders.create(order_id: order.id, item_id: tire.id, quantity: 2, price: 15, merchant_id: bike_shop.id)
+      item_order_2 = order.item_orders.create(order_id: order.id, item_id: pull_toy.id, quantity: 1, price: 100, merchant_id: dog_shop.id)
 
       site_admin = User.create(name: 'Site Admin', email: 'site_admin@user.com', password: 'secure', role: 3)
       site_admin.addresses.create(address: '123 First', city: 'Denver', state: 'CO', zip: 80_233)
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(site_admin)
 
-      visit "/admin/users/#{user_1.id}"
+      visit "/admin/users/#{user.id}"
 
       within '#user-order-links' do
-        click_on "#{order_1.id}"
+        click_on "#{order.id}"
       end
 
-      expect(current_path).to eq(admin_user_order_path(user_1.id, order_1.id))
+      expect(current_path).to eq(admin_user_order_path(user.id, order.id))
 
       within '#order-info' do
-        expect(page).to have_content("Date Created: #{order_1.created_at}")
-        expect(page).to have_content("Last Updated: #{order_1.updated_at}")
-        expect(page).to have_content("Status: #{order_1.status}")
-        expect(page).to have_content("Total Quantity: #{order_1.total_quantity}")
-        expect(page).to have_content("Grand Total: $#{order_1.grand_total}")
+        expect(page).to have_content("Date Created: #{order.created_at}")
+        expect(page).to have_content("Last Updated: #{order.updated_at}")
+        expect(page).to have_content("Status: #{order.status}")
+        expect(page).to have_content("Total Quantity: #{order.total_quantity}")
+        expect(page).to have_content("Grand Total: $#{order.grand_total}")
       end
 
       within "#item-order-#{item_order_1.id}" do

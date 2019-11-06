@@ -16,12 +16,12 @@ RSpec.describe 'As a registered user' do
       end
     end
 
-    xit 'is prepopulated with my previous data' do
+    it 'is prepopulated with my previous data' do
       expect(find_field(:name).value).to eq(@user.name)
       expect(find_field(:email).value).to eq(@user.email)
     end
 
-    xit 'edited data shows on the profile page' do
+    it 'edited data shows on the profile page' do
       fill_in :name, with: 'Bob'
       fill_in :email, with: 'bob@email.com'
 
@@ -37,7 +37,7 @@ RSpec.describe 'As a registered user' do
       end
     end
 
-    xit 'cannot be edited with an email already in use' do
+    it 'cannot be edited with an email already in use' do
       user = User.create(name: 'Bob', email: 'not_bob@email.com', password: 'secure')
 
       fill_in :email, with: 'not_bob@email.com'

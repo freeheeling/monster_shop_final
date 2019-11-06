@@ -25,7 +25,6 @@ class UsersController < ApplicationController
 
   def update_profile
     if current_user.update(update_profile_params)
-      current_user.addresses.where(alias: 'Home').update(upadate_address_params)
       flash[:success] = 'Your profile data has been updated!'
       redirect_to profile_path
     else
