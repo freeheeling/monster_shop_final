@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Delete Address' do
   before(:each) do
     @user = User.create!(name: 'Bob', email: 'bobemail.com', password: 'secure')
-    @address_1 = @user.addresses.create!(street: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+    @address_1 = @user.addresses.create!(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
   end
@@ -19,7 +19,7 @@ RSpec.describe 'Delete Address' do
   end
 
   it 'clicking the link will delete the address' do
-    address_2 = @user.addresses.create!(street: '234 Park', city: 'Boulder', state: 'CO', zip: 80_113)
+    address_2 = @user.addresses.create!(address: '234 Park', city: 'Boulder', state: 'CO', zip: 80_113)
     address_2_id = address_2.id
 
     visit profile_path

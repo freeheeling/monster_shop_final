@@ -1,6 +1,6 @@
 <%= form_tag users_path do %>
   <p>Name: <%= text_field_tag :name, @user.name %></p>
-  <p>Street: <%= text_field_tag :street, @addresses.street %></p>
+  <p>address: <%= text_field_tag :address, @addresses.address %></p>
   <p>City: <%= text_field_tag :city, @addresses.city %></p>
   <p>State: <%= text_field_tag :state, @addresses.state %></p>
   <p>Zip: <%= text_field_tag :zip, @addresses.zip %></p>

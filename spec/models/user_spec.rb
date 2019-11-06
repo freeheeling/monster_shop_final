@@ -42,4 +42,15 @@ describe User, type: :model do
       expect(user.role).to eq('site_admin')
     end
   end
+
+  describe 'instance methods' do
+    it 'address?' do
+      user_1 = User.create!(name: 'Bob', email: 'bob@email.com', password: 'secure')
+      user_2 = User.create!(name: 'Lee', email: 'lee@email.com', password: 'secure')
+      address = user_1.addresses.create!(address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233)
+
+      expect(user_1.address?).to eq(true)
+      expect(user_2.address?).to eq(false)
+    end
+  end
 end

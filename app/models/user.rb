@@ -15,4 +15,8 @@ class User < ApplicationRecord
   belongs_to :merchant, optional: true
 
   enum role: %w[default merchant_employee merchant_admin site_admin]
+
+  def address?
+    addresses.any?
+  end
 end
